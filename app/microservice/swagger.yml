@@ -1,53 +1,18 @@
 swagger: '2.0'
 info:
-  title: GFW OGR API
-  description: Global Forest Watch - OGR API
+  title: GFW Mail API
+  description: Global Forest Watch - Mail API
   version: "1.0.0"
 host: example.vizzuality.com
 
 schemes:
   - https
   - http
-# will be prefixed to all paths
-basePath: /api/v1/ogr
+
 produces:
   - application/vnd.api+json
 
-paths:
-  /convert:
-    post:
-      summary: Convert from shapefile and others to geojson
-      description: Convert Shapefile to geojson
-      produces:
-        - application/vnd.api+json
-      consumes:
-        - multipart/form-data
-      tags:
-        - OGR
-      operationId: convert
-      parameters:
-        - name: files
-          in: formData
-          description: File to convert
-          required: true
-          type: file
-      responses:
-        200:
-          description: The object created
-          schema:
-            $ref: '#/definitions/GeoStoreAPI'
-        400:
-          description: Validate error
-          schema:
-            $ref: '#/definitions/Errors'
-        500:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Errors'
-        default:
-          description: Unexpected error
-          schema:
-            $ref: '#/definitions/Errors'
+
 
 definitions:
   Errors:
@@ -98,63 +63,3 @@ definitions:
       meta:
         type: object
         description: A meta object containing non-standard meta-information about the error.
-
-  GeoStoreAPI:
-    type: object
-    properties:
-      data:
-        type: array
-        items:
-          $ref: '#/definitions/GeoJSON'
-
-  GeoJSON:
-    type: object
-    properties:
-      type:
-        type: string
-        description: Resource type
-      id:
-        type: string
-        description: Resource id
-      attributes:
-        properties:
-          schema:
-            $ref: '#/definitions/Features'
-  Features:
-    type: object
-    properties:
-      type:
-        type: string
-        description: Type of feature
-      features:
-        type: array
-        description: Features
-        items:
-          $ref: '#/definitions/Feature'
-  Feature:
-    type: object
-    properties:
-      type:
-        type: string
-        description: Type of feature
-      properties:
-        type: object
-        description: Feature
-      geometry:
-        type: object
-        description: Geometries
-        properties:
-          schema:
-            $ref: '#/definitions/Geometry'
-
-  Geometry:
-    type: object
-    properties:
-      type:
-        type: string
-        description: Geometry type
-      coordinates:
-        type: array
-        description: Coordinates array
-        items:
-          type: object
