@@ -2,15 +2,10 @@
 
 Master: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=master)](https://travis-ci.org/gfw-api/gfw-mail-api) Develop: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=develop)](https://travis-ci.org/gfw-api/gfw-mail-api)
 
-This repository is the microservice that implements the OGR
-funcionality, which is exposed on the /convert endpoint.
-
-The OGR service is used to convert various geo formats in to GeoJSON (in
-a web mercator projection), mainly to be used on the GFW map. For
-example, it can convert uploaded Shapefiles to GeoJSON.
+This repository is the microservice that send the emails.
 
 [View the documentation for this
-API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/Vizzuality/gfw-ogr-api/master/swagger.yml#/OGR)
+API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/gfw-api/gfw-mail-api/master/app/microservice/swagger.yml#/Mail)
 
 1. [Getting Started](#getting-started)
 2. [Deployment](#deployment)
@@ -39,7 +34,7 @@ Now we're ready to actually get the application running:
 
 ```
 git clone https://github.com/Vizzuality/gfw-ogr-api.git
-cd gfw-ogr-api
+cd gfw-mail-api
 npm install
 npm run develop
 ```
@@ -51,7 +46,7 @@ You can now access the microservice through the API gateway.
 The application is deployed to Heroku. Setup Heroku for the repository:
 
 ```
-heroku git:remote -a gfw-ogr-api-staging -r staging
+heroku git:remote -a gfw-mail-api-staging -r staging
 ```
 
 And deploy as normal:
