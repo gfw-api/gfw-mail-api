@@ -7,10 +7,15 @@ const CHANNEL = 'mail';
 
 class MailQueue {
     constructor() {
-        this.asynClient = new AsyncClient(AsyncClient.REDIS, {
-            url: config.get('apiGateway.queue')
-        });
-
+        logger.debug('Initializing queue with provider %s ', config.get('apiGateway.queueProvider'));
+        switch (config.get('apiGateway.queueProvider').toLowerCase()) {
+            case AsyncClient.REDIS:
+                this.asynClient = new AsyncClient(AsyncClient.REDIS, {
+                    url: config.get('apiGateway.queueUrl')
+                });
+                break;
+            default:
+        }
         var channelSubscribe = this.asynClient.toChannel(CHANNEL);
         channelSubscribe.on('message', MailQueue.sendMail);
         channelSubscribe.subscribe();

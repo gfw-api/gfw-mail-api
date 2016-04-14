@@ -1,7 +1,8 @@
 {
     "apiGateway":{
         "uri": "API_GATEWAY_URI",
-        "queue": "API_GATEWAY_QUEUE"
+        "queueUrl": "API_GATEWAY_QUEUE_URL",
+        "queueProvider": "API_GATEWAY_QUEUE_PROVIDER"
     },
     "sparkpost":{
         "apikey": "SPARKPOST_API_KEY"

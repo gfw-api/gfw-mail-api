@@ -1,6 +1,6 @@
 # Global Forest Watch OGR API
 
-Master: [![Build Status](https://travis-ci.org/gfw-api/gfw-ogr-api.svg?branch=master)](https://travis-ci.org/gfw-api/gfw-ogr-api) Develop: [![Build Status](https://travis-ci.org/gfw-api/gfw-ogr-api.svg?branch=develop)](https://travis-ci.org/gfw-api/gfw-ogr-api)
+Master: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=master)](https://travis-ci.org/gfw-api/gfw-mail-api) Develop: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=develop)](https://travis-ci.org/gfw-api/gfw-mail-api)
 
 This repository is the microservice that implements the OGR
 funcionality, which is exposed on the /convert endpoint.
@@ -66,5 +66,7 @@ It is necessary to define these environment variables:
 
 * API_GATEWAY_URI => Gateway Service API URL
 * NODE_ENV => Environment (prod, staging, dev)
-* API_GATEWAY_QUEUE => Url of async queue
+* API_GATEWAY_QUEUE_URL => Url of async queue
+* API_GATEWAY_QUEUE_PROVIDER => redis (only support redis)
 * SELF_REGISTRY => on/off to set auto registry in API Gateway
+* SPARKPOST_API_KEY => Sparkpost api key to send emails
