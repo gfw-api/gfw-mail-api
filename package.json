@@ -24,7 +24,7 @@
     "node": ">5.7.0"
   },
   "dependencies": {
-    "async-client": "git+https://github.com/Vizzuality/async-client-nodejs.git",
+    "async-client": "git+https://github.com/Vizzuality/async-client-nodejs.git#1.0.0",
     "bunyan": "1.7.1",
     "config": "1.19.0",
     "jsonapi-serializer": "2.1.1",

@@ -1,14 +1,14 @@
 language: node_js
 node_js:
-  - 5.7.0
+- 5.7.0
 sudo: required
 services:
-  - docker
+- docker
 script:
-  - docker-compose -f docker-compose-test.yml build
-  - docker-compose -f docker-compose-test.yml run test
+- docker-compose -f docker-compose-test.yml build
+- docker-compose -f docker-compose-test.yml run test
 deploy:
   provider: heroku
   app: gfw-mail-api-staging
   api_key:
-    secure: AFTqPlDp3lWDX7rm3nK5scyCAZBmCC03YUDFGyLEyf4cXdelequ28X/Encss3XAOiIx0FyTxgo7UWIiYMVY9PFrKPy6iSognBbEvQ+LSMfFZuYCGcN+0I6b5gbBCFZaLQFgCLQ0IWr00M8PhQdtvdbEpusUOuFSzzPkXduTYDwhHoSIyi4tQlamVMDxwKTXdDLFACMMfRa7vcTPLobX+snOmqYl+sZiwUotyZpChVvfij231wb26wH5PcbNmU9uLtBnmxknbEEkcsGGLuIG1h7jrUL03dyUZq6uHRMTN7C6l3kb2YpXlm8i+x2jVmOyu+U+jn6rvoDXpHJBOUnt4dVz4mh/zrRNxF5OOH71Mzzd597zjqcee0aq3xBH/eDr/UG7t6nxsu56TQfvszjLIRjq1agW/TZ86k+XIb+DYnCP35DCwEoWgzpDHxyUYhde5sixa3XKBvFOCXz1UPUG1kfduVDYsPc8+Cylv39SZmizyba12oLBUj1cf3fUrPNavM4VW4bKeQPzmzYFN43LZTPz4rKpHULomiiDFJ1bhGK7zzGQK2SL+lbbGBp9I44HqvD7/15tUTc8sLV4qod1aaIvuwmtOZC2sOhzK+FSRje02ocdBLvZf2yayGptz70d020vAtL2ir30Aqmmq00GUTd+w6uNYQs2R8GQZvpovC8k=
+    secure: nER1SeiX0+P2JE8db1njekbWyTEXe/icmRQI/EgzckNgfFd80hHwrWRv+6Eu6mM102Sg4VIqaKGcDgQkMndgn8dQ20JszA3/15EM20MZxbe/H4QXuzn3dvOfJ9PFpUvK2udMIyTfimGtpN8njl2SqEokm6XPzbzbxjfghg5lamlQ46p49jzrt7yPcm7krtluYZZVooY8nsbJPSU+Vg9cwmWEIdTEj4ivwKlTL9qVONX3Zfro6LLoQsUwI1oSe3So279KRYZ7omy+HYdpfDDvsCnkAyUu3HdQ5fzYej6c1MNhp6cpUXDeHcXbqE7hTuLnWj1l5EDbQ53GRqRLPx5o25e1ss40uvFJISKY0cEAC7ILwQVZS/LG/TIJsIuu8XJdbdwRRgxaUwfMqaic6ZmDYvQk9diNg3h2c0MlWOGV7xRKSvKgm7OF8pRvesw2cSjgZ+XgDbbAS09Gb6t7TwrXz7R4Gtg2KAZyBcC5+In3b5YnDoPq5o87SkZttoljqd5+83Bb17kQkghc+bnBPXxTA9qmsVknuQIiEzCfdbYJ9lHjgLDdRN3mVhBZDJJcXdBiAH98Nqgtbkh2i72Ihv7fva/YBDjUj6pmojv7SuhRhPwg6sHRmo1GJXejeyQoxDya6MMzM3g1NC2nWjlBVZmJoDMcud2RM3KHi67F4RxdyMo=
