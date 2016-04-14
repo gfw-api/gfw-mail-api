@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 5.7.0
+sudo: required
+services:
+  - docker
+script:
+  - docker-compose -f docker-compose-test.yml build
+  - docker-compose -f docker-compose-test.yml run test
+deploy:
+  provider: heroku
+  app: gfw-mail-api-staging
+  api_key:
+    secure: AFTqPlDp3lWDX7rm3nK5scyCAZBmCC03YUDFGyLEyf4cXdelequ28X/Encss3XAOiIx0FyTxgo7UWIiYMVY9PFrKPy6iSognBbEvQ+LSMfFZuYCGcN+0I6b5gbBCFZaLQFgCLQ0IWr00M8PhQdtvdbEpusUOuFSzzPkXduTYDwhHoSIyi4tQlamVMDxwKTXdDLFACMMfRa7vcTPLobX+snOmqYl+sZiwUotyZpChVvfij231wb26wH5PcbNmU9uLtBnmxknbEEkcsGGLuIG1h7jrUL03dyUZq6uHRMTN7C6l3kb2YpXlm8i+x2jVmOyu+U+jn6rvoDXpHJBOUnt4dVz4mh/zrRNxF5OOH71Mzzd597zjqcee0aq3xBH/eDr/UG7t6nxsu56TQfvszjLIRjq1agW/TZ86k+XIb+DYnCP35DCwEoWgzpDHxyUYhde5sixa3XKBvFOCXz1UPUG1kfduVDYsPc8+Cylv39SZmizyba12oLBUj1cf3fUrPNavM4VW4bKeQPzmzYFN43LZTPz4rKpHULomiiDFJ1bhGK7zzGQK2SL+lbbGBp9I44HqvD7/15tUTc8sLV4qod1aaIvuwmtOZC2sOhzK+FSRje02ocdBLvZf2yayGptz70d020vAtL2ir30Aqmmq00GUTd+w6uNYQs2R8GQZvpovC8k=
