@@ -64,5 +64,7 @@ git push staging master
 
 It is necessary to define these environment variables:
 
-* API_GATEWAY_URI => Gateway Serice API URL
+* API_GATEWAY_URI => Gateway Service API URL
 * NODE_ENV => Environment (prod, staging, dev)
+* API_GATEWAY_QUEUE => Url of async queue
+* SELF_REGISTRY => on/off to set auto registry in API Gateway
