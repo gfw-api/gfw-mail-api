@@ -1,4 +1,4 @@
-# Global Forest Watch OGR API
+# Global Forest Watch Mail API
 
 Master: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=master)](https://travis-ci.org/gfw-api/gfw-mail-api) Develop: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=develop)](https://travis-ci.org/gfw-api/gfw-mail-api)
 
