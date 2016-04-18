@@ -102,7 +102,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', ['jshint', 'unitTest']);
 
-    grunt.registerTask('serve', ['watch']);
+    grunt.registerTask('serve', ['express:dev', 'watch']);
 
     grunt.registerTask('default', 'serve');
 

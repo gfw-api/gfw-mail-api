@@ -8,7 +8,7 @@ var koaLogger = require('koa-logger');
 var loader = require('loader');
 var validate = require('koa-validate');
 var ErrorSerializer = require('serializers/errorSerializer');
-var registerService = require('register-microservice-client');
+
 
 
 // instance of koa
@@ -48,8 +48,8 @@ var server = require('http').Server(app.callback());
 var port = process.env.PORT || config.get('service.port');
 
 server.listen(port, function() {
-    
-    var p = registerService({
+
+    var p = require('microservice-client').register({
         id: config.get('service.id'),
         name: config.get('service.name'),
         uri: config.get('service.uri'),
