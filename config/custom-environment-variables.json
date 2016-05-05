@@ -1,10 +1,14 @@
 {
-    "apiGateway":{
+    "apiGateway": {
         "uri": "API_GATEWAY_URI",
         "queueUrl": "API_GATEWAY_QUEUE_URL",
         "queueProvider": "API_GATEWAY_QUEUE_PROVIDER"
     },
-    "sparkpost":{
+    "sparkpost": {
         "apikey": "SPARKPOST_API_KEY"
+    },
+    "service": {
+        "port": "PORT",
+        "uri": "URI"
     }
 }
