@@ -1,13 +1,6 @@
 {
     "id": "#(service.id)",
     "name": "#(service.name)",
-    "urls": [{
-        "url": "/ogr/convert",
-        "method": "POST",
-        "endpoints": [{
-            "method": "POST",
-            "baseUrl": "#(service.uri)",
-            "path": "/api/v1/mail/convert"
-        }]
+    "urls": []
     }]
 }

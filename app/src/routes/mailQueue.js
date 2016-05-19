@@ -7,7 +7,7 @@ const CHANNEL = 'mail';
 
 class MailQueue {
     constructor() {
-        logger.debug('Initializing queue with provider %s ', config.get('apiGateway.queueProvider'));
+        logger.info('Initializing queue with provider %s ', config.get('apiGateway.queueProvider'));
         switch (config.get('apiGateway.queueProvider').toLowerCase()) {
             case AsyncClient.REDIS:
                 this.asynClient = new AsyncClient(AsyncClient.REDIS, {
