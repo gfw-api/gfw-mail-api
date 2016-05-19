@@ -7,9 +7,8 @@ develop:
   container_name: gfw-mail-api-develop
   environment:
     NODE_ENV: dev
-    API_GATEWAY_URI: http://192.168.99.100:8000
-    API_GATEWAY_QUEUE_URL: redis://192.168.99.100:6379
-    API_GATEWAY_QUEUE_PROVIDER: redis
+    QUEUE_URL: redis://192.168.99.100:6379
+    QUEUE_PROVIDER: redis
     SELF_REGISTRY: "on"
     SPARKPOST_API_KEY: <apikey>
   command: develop
