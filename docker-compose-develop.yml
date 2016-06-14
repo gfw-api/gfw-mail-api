@@ -9,6 +9,7 @@ develop:
     NODE_ENV: dev
     QUEUE_URL: redis://192.168.99.100:6379
     QUEUE_PROVIDER: redis
+    QUEUE_NAME: mail
     SELF_REGISTRY: "on"
     SPARKPOST_API_KEY: <apikey>
   command: develop
