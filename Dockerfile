@@ -1,14 +1,18 @@
-FROM node:5.8.0
+FROM mhart/alpine-node:6.2.2
 MAINTAINER raul.requero@vizzuality.com
 
-RUN npm install -g grunt-cli bunyan
 ENV NAME gfw-mail-api
 ENV USER microservice
 
-RUN groupadd -r $USER && useradd -r -g $USER $USER
+RUN addgroup $USER && adduser -s /bin/bash -D -G $USER $USER
+
+RUN apk update && apk upgrade && \
+    apk add --no-cache --update bash git openssh python build-base
+
+RUN npm install -g grunt-cli bunyan pm2
 
 RUN mkdir -p /opt/$NAME
-ADD package.json /opt/$NAME/package.json
+COPY package.json /opt/$NAME/package.json
 RUN cd /opt/$NAME && npm install
 
 COPY entrypoint.sh /opt/$NAME/entrypoint.sh
@@ -16,12 +20,12 @@ COPY config /opt/$NAME/config
 
 WORKDIR /opt/$NAME
 
-ADD ./app /opt/$NAME/app
+COPY ./app /opt/$NAME/app
 
 RUN chown $USER:$USER /opt/$NAME
 
 # Tell Docker we are going to use this ports
-EXPOSE 3600
+EXPOSE 3500
 USER $USER
 
 ENTRYPOINT ["./entrypoint.sh"]

@@ -3,8 +3,8 @@ test:
     file: base.yml
     service: base
   ports:
-    - "3600"
+    - "3500"
   container_name: gfw-mail-api-test
   environment:
-    NODE_ENV: test    
+    NODE_ENV: test
   command: test
