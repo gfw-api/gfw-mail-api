@@ -1,7 +1,7 @@
 {
     "logger": {
         "name": "gfw-mail-api",
-        "level": "info",
+        "level": "warn",
         "toFile": false,
         "dirLogFile": null
     }
