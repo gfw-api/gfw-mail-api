@@ -1,6 +1,6 @@
 {
   "name": "gfw-mail-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Global forest watch - Mail API",
   "main": "app/index.js",
   "scripts": {
