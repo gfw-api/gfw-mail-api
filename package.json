@@ -1,6 +1,6 @@
 {
   "name": "gfw-mail-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Global forest watch - Mail API",
   "main": "app/index.js",
   "scripts": {
@@ -38,7 +38,7 @@
     "sparkpost": "1.3.2",
     "url": "0.11.0",
     "vizz.async-client": "^1.0.0",
-    "vizz.microservice-client": "^1.2.4"
+    "vizz.microservice-client": "1.2.4"
   },
   "devDependencies": {
     "co-mocha": "1.1.2",
