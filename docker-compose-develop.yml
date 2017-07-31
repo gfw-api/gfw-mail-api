@@ -6,12 +6,13 @@ develop:
     - "35700:35729"
   container_name: gfw-mail-api-develop
   environment:
+    CT_REGISTER_MODE: auto
     NODE_ENV: dev
     API_GATEWAY_URL: http://192.168.99.100:8000
     QUEUE_URL: redis://192.168.99.100:6379
     QUEUE_PROVIDER: redis
     QUEUE_NAME: mail
-    SPARKPOST_API_KEY: e0b3da7bf38e0d378917e030e3f4b13aeea0c5cb
+    SPARKPOST_API_KEY: notset
   command: develop
   volumes:
     - ./app:/opt/gfw-mail-api/app
