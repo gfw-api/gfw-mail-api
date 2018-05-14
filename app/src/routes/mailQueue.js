@@ -27,7 +27,12 @@ class MailQueue {
         let message = JSON.parse(mess);
 
         try {
-            let response = yield mailService.sendMail(message.template, message.data, message.recipients);
+            let response = null;
+            if (message.sender && message.sender === 'rw') {
+                response = yield mailService.sendRWMail(message.template, message.data, message.recipients);
+            } else {
+                response = yield mailService.sendMail(message.template, message.data, message.recipients);
+            }
             logger.debug('Message send correctly');
         } catch (e) {
             logger.error('Error to send mail', e);
