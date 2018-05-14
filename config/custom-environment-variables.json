@@ -6,7 +6,8 @@
         "queueName": "QUEUE_NAME"
     },
     "sparkpost": {
-        "apikey": "SPARKPOST_API_KEY"
+        "apikey": "SPARKPOST_API_KEY",
+        "rwApikey": "SPARKPOST_RW_API_KEY"
     },
     "service": {
         "port": "PORT",
