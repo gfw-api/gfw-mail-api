@@ -66,12 +66,6 @@ spec:
                 secretKeyRef:
                   name: mssecrets
                   key: SPARKPOST_API_KEY
-          - name: SPARKPOST_RW_API_KEY
-            valueFrom:
-                secretKeyRef:
-                  name: mssecrets
-                  key: SPARKPOST_RW_API_KEY
-
         ports:
           - containerPort: 3500
 

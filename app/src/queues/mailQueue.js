@@ -20,17 +20,17 @@ class MailQueue {
 
         }
         const channelSubscribe = this.asynClient.toChannel(CHANNEL);
-        channelSubscribe.on('message', MailQueue.sendMail);
+        channelSubscribe.on('message', this.sendMail.bind(this));
         channelSubscribe.subscribe();
     }
 
-    static* sendMail(channel, mess) {
+    * sendMail(channel, mess) {
         logger.info('Receive message. Send Mail. Message: %s', mess);
 
         const message = JSON.parse(mess);
 
         try {
-            const response = yield mailService.sendMail(message.template, message.data, message.recipients);
+            yield mailService.sendMail(message.template, message.data, message.recipients);
             logger.debug('Message send correctly');
         } catch (e) {
             logger.error('Error sending email:', e);
