@@ -22,6 +22,7 @@ env:
     - QUEUE_NAME=mail_test
     - QUEUE_PROVIDER=redis
     - QUEUE_URL=redis://localhost:6379
+    - CT_REGISTER_MODE=auto
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
