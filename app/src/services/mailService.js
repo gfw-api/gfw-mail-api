@@ -17,13 +17,11 @@ class MailService {
     * sendMail(template, data, recipients) {
         logger.info('Sending email with template %s to recipients: ', template, recipients);
         const reqOpts = {
-            transmissionBody: {
-                substitution_data: data,
-                content: {
-                    template_id: template
-                },
-                recipients
-            }
+            substitution_data: data,
+            content: {
+                template_id: template
+            },
+            recipients
         };
 
         const response = yield sendMailThunk(this.client, reqOpts);
