@@ -40,31 +40,29 @@ describe('MailQueue ', () => {
 
         nock('https://api.sparkpost.com')
             .post(`/api/v1/transmissions`, {
-                transmissionBody: {
-                    substitution_data: {
-                        value: 3578,
-                        alert_count: 3578,
-                        map_image: null,
-                        layerSlug: 'viirs-active-fires',
-                        alert_name: 'Subscription r6iigdoexerhgoq63l3di',
-                        selected_area: 'Custom Area',
-                        unsubscribe_url: 'http://127.0.0.1:9000/subscriptions/5cb87d04e209d34b76a55425/unsubscribe?redirect=true',
-                        subscriptions_url: 'http://staging.globalforestwatch.org/my_gfw/subscriptions',
-                        alert_link: 'http://staging.globalforestwatch.org/map/3/0/0/ALL/grayscale/viirs_fires_alerts?begin=2019-04-17&end=2019-04-18&fit_to_geom=true&geostore=agpzfmdmdy1hcGlzchULEghHZW9zdG9yZRiAgIDIjJfRCAw',
-                        alert_date_begin: '2019-04-17',
-                        alert_date_end: '2019-04-18'
-                    },
-                    content: {
-                        template_id: 'fires-notification-en'
-                    },
-                    recipients: [
-                        {
-                            address: {
-                                email: 'subscription-recipient@vizzuality.com'
-                            }
+                substitution_data: {
+                    value: 3578,
+                    alert_count: 3578,
+                    map_image: null,
+                    layerSlug: 'viirs-active-fires',
+                    alert_name: 'Subscription r6iigdoexerhgoq63l3di',
+                    selected_area: 'Custom Area',
+                    unsubscribe_url: 'http://127.0.0.1:9000/subscriptions/5cb87d04e209d34b76a55425/unsubscribe?redirect=true',
+                    subscriptions_url: 'http://staging.globalforestwatch.org/my_gfw/subscriptions',
+                    alert_link: 'http://staging.globalforestwatch.org/map/3/0/0/ALL/grayscale/viirs_fires_alerts?begin=2019-04-17&end=2019-04-18&fit_to_geom=true&geostore=agpzfmdmdy1hcGlzchULEghHZW9zdG9yZRiAgIDIjJfRCAw',
+                    alert_date_begin: '2019-04-17',
+                    alert_date_end: '2019-04-18'
+                },
+                content: {
+                    template_id: 'fires-notification-en'
+                },
+                recipients: [
+                    {
+                        address: {
+                            email: 'subscription-recipient@vizzuality.com'
                         }
-                    ]
-                }
+                    }
+                ]
             })
             .reply(200);
 
