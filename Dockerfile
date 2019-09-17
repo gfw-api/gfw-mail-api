@@ -1,5 +1,5 @@
-FROM mhart/alpine-node:6.2.2
-MAINTAINER raul.requero@vizzuality.com
+FROM mhart/alpine-node:12.9
+MAINTAINER info@vizzuality.com
 
 ENV NAME gfw-mail-api
 ENV USER microservice

@@ -1,10 +1,40 @@
-test:
-  extends:
-    file: base.yml
-    service: base
-  ports:
-    - "3500"
-  container_name: gfw-mail-api-test
-  environment:
-    NODE_ENV: test
-  command: test
+version: "3"
+services:
+  test:
+    build: .
+    ports:
+      - "3500:3500"
+    container_name: gfw-mail-api-test
+    environment:
+      NODE_PATH: app/src
+      NODE_ENV: test
+      SPARKPOST_API_KEY: foobar
+      PORT: 3500
+      API_VERSION: v1
+      LOCAL_URL: http://127.0.0.1:3500
+      CT_URL: http://127.0.0.1:9000
+      MONGO_PORT_27017_TCP_ADDR: mongo
+      CT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
+      QUEUE_NAME: mail_test
+      QUEUE_PROVIDER: redis
+      QUEUE_URL: redis://redis
+      CT_REGISTER_MODE: auto
+    command: test
+    depends_on:
+      - redis
+      - mongo
+
+  redis:
+    image: redis
+    expose:
+      - 6379
+
+  mongo:
+    image: mongo:3.4
+    container_name: mail-mongo-develop
+    command: --smallfiles
+    ports:
+      - "27017"
+    volumes:
+      - $HOME/docker/data/dataset:/data/db
+    restart: always

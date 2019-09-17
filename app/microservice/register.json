@@ -1,7 +1,5 @@
 {
-    "id": "#(service.id)",
     "name": "#(service.name)",
     "tags": ["gfw"],
     "urls": []
-    }]
 }
