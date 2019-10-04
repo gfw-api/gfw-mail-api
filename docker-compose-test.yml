@@ -37,4 +37,3 @@ services:
       - "27017"
     volumes:
       - $HOME/docker/data/dataset:/data/db
-    restart: always
