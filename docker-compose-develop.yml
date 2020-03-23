@@ -1,18 +1,20 @@
-develop:
-  extends:
-    file: base.yml
-    service: base
-  ports:
-    - "35700:35729"
-  container_name: gfw-mail-api-develop
-  environment:
-    CT_REGISTER_MODE: auto
-    NODE_ENV: dev
-    API_GATEWAY_URL: http://192.168.99.100:8000
-    QUEUE_URL: redis://192.168.99.100:6379
-    QUEUE_PROVIDER: redis
-    QUEUE_NAME: mail
-    SPARKPOST_API_KEY: notset
-  command: develop
-  volumes:
-    - ./app:/opt/gfw-mail-api/app
+version: "3"
+services:
+  develop:
+    build: .
+    ports:
+      - "3500:3500"
+    container_name: gfw-mail-api-develop
+    environment:
+      PORT: 3500
+      NODE_PATH: app/src
+      CT_REGISTER_MODE: auto
+      NODE_ENV: dev
+      API_GATEWAY_URL: http://192.168.99.100:8000
+      QUEUE_URL: redis://192.168.99.100:6379
+      QUEUE_PROVIDER: redis
+      QUEUE_NAME: mail
+      SPARKPOST_API_KEY: notset
+    command: develop
+    volumes:
+      - ./app:/opt/gfw-mail-api/app

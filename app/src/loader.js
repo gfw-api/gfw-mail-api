@@ -1,53 +1,12 @@
 /* eslint-disable import/no-dynamic-require */
-/**
- * Load routers
- */
-module.exports = (function () {
-    const fs = require('fs');
-    const routersPath = `${__dirname}/routes`;
-    const logger = require('logger');
-    const mount = require('koa-mount');
+const fs = require('fs');
+const logger = require('logger');
 
-    const loadAPI = function (app, path, pathApi) {
-        logger.debug('Loading routes...');
-        const routesFiles = fs.readdirSync(path);
-        let existIndexRouter = false;
-        routesFiles.forEach((file) => {
-            const newPath = path ? (`${path}/${file}`) : file;
-            const stat = fs.statSync(newPath);
+const queuesPath = `${__dirname}/queues`;
 
-            if (!stat.isDirectory()) {
-                if (file.lastIndexOf('Router.js') !== -1) {
-                    if (file === 'indexRouter.js') {
-                        existIndexRouter = true;
-                    } else {
-                        logger.debug('Loading route %s, in path %s', newPath, pathApi);
-                        if (pathApi) {
-                            app.use(mount(pathApi, require(newPath).middleware()));
-                        } else {
-                            app.use(require(newPath).middleware());
-                        }
-                    }
-                }
-            } else {
-                // is folder
-                const newPathAPI = pathApi ? (`${pathApi}/${file}`) : `/${file}`;
-                loadAPI(app, newPath, newPathAPI);
-            }
-        });
-        if (existIndexRouter) {
-            // load indexRouter when finish other Router
-            const newPath = path ? (`${path}/indexRouter.js`) : 'indexRouter.js';
-            logger.debug('Loading route %s, in path %s', newPath, pathApi);
-            if (pathApi) {
-                app.use(mount(pathApi, require(newPath).middleware()));
-            } else {
-                app.use(require(newPath).middleware());
-            }
-        }
-    };
+module.exports = (() => {
 
-    const loadQueue = function (app, path) {
+    const loadQueue = (app, path) => {
         logger.debug('Loading queues...');
         const routesFiles = fs.readdirSync(path);
         routesFiles.forEach((file) => {
@@ -66,15 +25,14 @@ module.exports = (function () {
         });
     };
 
-    const loadRoutes = function (app) {
-        loadAPI(app, routersPath);
-        loadQueue(app, routersPath);
-        logger.debug('Loaded routes and queues correctly!');
+    const loadQueues = (app) => {
+        logger.debug('Loading queues...');
+        loadQueue(app, queuesPath);
+        logger.debug('Loaded queues correctly!');
     };
-
 
     return {
-        loadRoutes
+        loadQueues
     };
 
-}());
+})();

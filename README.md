@@ -1,6 +1,6 @@
 # Global Forest Watch Mail API
 
-Master: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=master)](https://travis-ci.org/gfw-api/gfw-mail-api) Develop: [![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=develop)](https://travis-ci.org/gfw-api/gfw-mail-api)
+[![Build Status](https://travis-ci.org/gfw-api/gfw-mail-api.svg?branch=develop)](https://travis-ci.org/gfw-api/gfw-mail-api)
 
 This repository is the microservice that send the emails.
 

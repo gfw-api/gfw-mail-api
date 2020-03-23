@@ -3,7 +3,6 @@ const nock = require('nock');
 const config = require('config');
 const AsyncClient = require('vizz.async-client');
 const co = require('co');
-const { getTestServer } = require('./test-server');
 
 const MailQueue = require('../../src/queues/mailQueue');
 
@@ -13,8 +12,6 @@ nock.enableNetConnect(process.env.HOST_IP);
 
 const should = chai.should();
 chai.use(require('chai-datetime'));
-
-let requester;
 
 const asyncClientSubscriber = new AsyncClient(AsyncClient.REDIS, {
     url: config.get('apiGateway.queueUrl')
@@ -29,8 +26,6 @@ describe('MailQueue ', () => {
         if (process.env.NODE_ENV !== 'test') {
             throw Error(`Running the test suite with NODE_ENV ${process.env.NODE_ENV} may result in permanent data loss. Please use NODE_ENV=test.`);
         }
-
-        requester = await getTestServer();
     });
 
     it('Test fires-notification-en message received triggers emails sent', async () => {

@@ -2,24 +2,26 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
-    name: {name}
-  name: {name}
+    name: mail
+  name: mail
 spec:
   revisionHistoryLimit: 2
   template:
     metadata:
       labels:
-        name: {name}
+        name: mail
     spec:
       containers:
-      - name: {name}
-        image: vizzuality/{name}
+      - name: mail
+        image: vizzuality/mail
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "128Mi"
+            cpu: "0.5"
+            memory: "256M"
           limits:
-            memory: "512Mi"
+            cpu: "1"
+            memory: "512M"
         args:
           - start
         env:
@@ -30,7 +32,7 @@ spec:
           - name: NODE_PATH
             value: app/src
           - name: LOCAL_URL
-            value: http://{name}.default.svc.cluster.local:3500
+            value: http://mail.default.svc.cluster.local:3500
           - name: QUEUE_PROVIDER
             value: redis
           - name: QUEUE_NAME
@@ -67,5 +69,22 @@ spec:
                   key: SPARKPOST_API_KEY
         ports:
           - containerPort: 3500
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /healthcheck
+            port: 3500
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 15
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /healthcheck
+            port: 3500
+          failureThreshold: 3
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          periodSeconds: 15
 
       restartPolicy: Always

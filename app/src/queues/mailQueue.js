@@ -24,6 +24,7 @@ class MailQueue {
         channelSubscribe.subscribe();
     }
 
+    // eslint-disable-next-line class-methods-use-this
     * sendMail(channel, mess) {
         logger.info('Receive message. Send Mail. Message: %s', mess);
 

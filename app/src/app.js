@@ -7,6 +7,8 @@ const loader = require('loader');
 const validate = require('koa-validate');
 const ErrorSerializer = require('serializers/errorSerializer');
 const ctRegisterMicroservice = require('ct-register-microservice-node');
+const convert = require('koa-convert');
+const koaSimpleHealthCheck = require('koa-simple-healthcheck');
 
 
 // instance of koa
@@ -18,13 +20,25 @@ if (process.env.NODE_ENV === 'dev') {
     app.use(koaLogger());
 }
 
-// catch errors and send in jsonapi standard. Always return vnd.api+json
-app.use(function* (next) {
+app.use(function* handleErrors(next) {
     try {
         yield next;
-    } catch (err) {
-        this.status = err.status || 500;
-        this.body = ErrorSerializer.serializeError(this.status, err.message);
+    } catch (inErr) {
+        let error = inErr;
+        try {
+            error = JSON.parse(inErr);
+        } catch (e) {
+            logger.debug('Could not parse error message - is it JSON?: ', inErr);
+            error = inErr;
+        }
+        this.status = error.status || this.status || 500;
+        if (this.status >= 500) {
+            logger.error(error);
+        } else {
+            logger.info(error);
+        }
+
+        this.body = ErrorSerializer.serializeError(this.status, error.message);
         if (process.env.NODE_ENV === 'prod' && this.status === 500) {
             this.body = 'Unexpected error';
         }
@@ -35,17 +49,19 @@ app.use(function* (next) {
 // load custom validator
 app.use(validate());
 
+app.use(convert.back(koaSimpleHealthCheck()));
+
 // load routes
-loader.loadRoutes(app);
+loader.loadQueues(app);
 
 // Instance of http module
-const server = require('http').Server(app.callback());
+const appServer = require('http').Server(app.callback());
 
 // get port of environment, if not exist obtain of the config.
 // In production environment, the port must be declared in environment variable
 const port = process.env.PORT || config.get('service.port');
 
-server.listen(port, () => {
+const server = appServer.listen(port, () => {
     ctRegisterMicroservice.register({
         info: require('../microservice/register.json'),
         swagger: require('../microservice/public-swagger.json'),
@@ -66,3 +82,5 @@ server.listen(port, () => {
 });
 
 logger.info(`Server started in port:${port}`);
+
+module.exports = server;

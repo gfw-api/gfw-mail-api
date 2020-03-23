@@ -1,15 +1,19 @@
 {
-    "apiGateway": {
-        "uri": "API_GATEWAY_URI",
-        "queueUrl": "QUEUE_URL",
-        "queueProvider": "QUEUE_PROVIDER",
-        "queueName": "QUEUE_NAME"
-    },
-    "sparkpost": {
-        "apikey": "SPARKPOST_API_KEY"
-    },
-    "service": {
-        "port": "PORT",
-        "uri": "URI"
-    }
+  "apiGateway": {
+    "uri": "API_GATEWAY_URI",
+    "queueUrl": "QUEUE_URL",
+    "queueProvider": "QUEUE_PROVIDER",
+    "queueName": "QUEUE_NAME"
+  },
+  "sparkpost": {
+    "apikey": "SPARKPOST_API_KEY"
+  },
+  "service": {
+    "port": "PORT",
+    "uri": "URI"
+  },
+  "logger": {
+    "type": "LOGGER_TYPE",
+    "level": "LOGGER_LEVEL"
+  }
 }

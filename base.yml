@@ -1,8 +1,0 @@
-base:
-  build: .
-  ports:
-    - "3500:3500"
-  environment:
-    PORT: 3500
-    NODE_PATH: app/src
-  container_name: gfw-mail-api

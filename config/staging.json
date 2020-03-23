@@ -1,12 +1,12 @@
 {
-    "logger": {
-        "name": "gfw-mail-api-STAGING",
-        "level": "info",
-        "toFile": false,
-        "dirLogFile": null
-    },
-    "service": {
-        "uri": "http://gfw-mail-api-staging.herokuapp.com",
-        "port": null
-    }
+  "logger": {
+    "name": "gfw-mail-api-STAGING",
+    "level": "info",
+    "toFile": false,
+    "dirLogFile": null
+  },
+  "service": {
+    "uri": "http://gfw-mail-api-staging.herokuapp.com",
+    "port": null
+  }
 }

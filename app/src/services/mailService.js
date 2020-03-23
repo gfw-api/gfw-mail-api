@@ -2,10 +2,8 @@ const logger = require('logger');
 const config = require('config');
 const SparkPost = require('sparkpost');
 
-const sendMailThunk = function (client, reqOpts) {
-    return function (callback) {
-        client.transmissions.send(reqOpts, callback);
-    };
+const sendMailThunk = (client, reqOpts) => (callback) => {
+    client.transmissions.send(reqOpts, callback);
 };
 
 class MailService {
