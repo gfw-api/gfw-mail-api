@@ -31,7 +31,7 @@ services:
 
   mongo:
     image: mongo:3.4
-    container_name: mail-mongo-develop
+    container_name: mail-mongo-test
     command: --smallfiles
     ports:
       - "27017"
