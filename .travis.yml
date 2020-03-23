@@ -1,9 +1,7 @@
 language: node_js
 services:
-  - mongodb
   - redis-server
 node_js:
-  - "12.6"
   - "12"
 cache:
   directories:
@@ -16,7 +14,6 @@ env:
     - API_VERSION=v1
     - LOCAL_URL=http://127.0.0.1:3500
     - CT_URL=http://127.0.0.1:9000
-    - MONGO_PORT_27017_TCP_ADDR=127.0.0.1
     - CT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
     - SPARKPOST_API_KEY=foobar
     - QUEUE_NAME=mail_test
