@@ -6,7 +6,7 @@
 This repository is the microservice that send the emails.
 
 [View the documentation for this
-API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/gfw-api/gfw-mail-api/master/app/microservice/swagger.yml#/Mail)
+API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/gfw-api/gfw-mail-api/production/app/microservice/swagger.yml#/Mail)
 
 1. [Getting Started](#getting-started)
 2. [Deployment](#deployment)
@@ -16,7 +16,7 @@ API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/
 ### OS X
 
 **First, make sure that you have the [API gateway running
-locally](https://github.com/Vizzuality/api-gateway/tree/master#getting-started).**
+locally](https://github.com/Vizzuality/api-gateway/tree/production#getting-started).**
 
 We're using Docker which, luckily for you, means that getting the
 application running locally should be fairly painless. First, make sure
