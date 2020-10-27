@@ -3,6 +3,8 @@
 ## 27/10/2020
 
 - Upgrade `sparkpost` NPM package to version 2.1.4.
+- Security updates on `lodash` and `websocket-extensions` NPM packages.
+- Minor updates to Jenkinsfile and k8s configuration files.
 
 # v1.0.0
 
