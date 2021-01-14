@@ -19,6 +19,7 @@ services:
       QUEUE_PROVIDER: redis
       QUEUE_URL: redis://redis
       CT_REGISTER_MODE: auto
+      FASTLY_ENABLED: "false"
     command: test
     depends_on:
       - redis

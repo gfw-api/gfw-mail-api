@@ -15,6 +15,9 @@ services:
       QUEUE_PROVIDER: redis
       QUEUE_NAME: mail
       SPARKPOST_API_KEY: notset
+      FASTLY_ENABLED: "false"
+      LOCAL_URL: http://mymachine:3055
+      CT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
     command: develop
     volumes:
       - ./app:/opt/gfw-mail-api/app
