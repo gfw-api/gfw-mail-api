@@ -1,7 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  creationTimestamp: null
   labels:
     name: mail
   name: mail
@@ -19,7 +18,6 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
         name: mail
     spec:
@@ -42,8 +40,6 @@ spec:
               value: staging
             - name: NODE_PATH
               value: app/src
-            - name: LOCAL_URL
-              value: http://mail.default.svc.cluster.local:3500
             - name: QUEUE_PROVIDER
               value: redis
             - name: QUEUE_NAME
@@ -53,48 +49,11 @@ spec:
                 secretKeyRef:
                   key: REDIS_URI
                   name: dbsecrets
-            - name: CT_URL
-              valueFrom:
-                secretKeyRef:
-                  key: CT_URL
-                  name: mssecrets
-            - name: CT_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  key: CT_TOKEN
-                  name: mssecrets
-            - name: CT_REGISTER_MODE
-              valueFrom:
-                secretKeyRef:
-                  key: CT_REGISTER_MODE
-                  name: mssecrets
-            - name: API_VERSION
-              valueFrom:
-                secretKeyRef:
-                  key: API_VERSION
-                  name: mssecrets
             - name: SPARKPOST_API_KEY
               valueFrom:
                 secretKeyRef:
                   key: SPARKPOST_API_KEY
                   name: mssecrets
-            - name: FASTLY_ENABLED
-              valueFrom:
-                secretKeyRef:
-                  key: FASTLY_ENABLED
-                  name: mssecrets
-            - name: FASTLY_APIKEY
-              valueFrom:
-                secretKeyRef:
-                  key: FASTLY_APIKEY
-                  name: mssecrets
-                  optional: true
-            - name: FASTLY_SERVICEID
-              valueFrom:
-                secretKeyRef:
-                  key: FASTLY_SERVICEID
-                  name: mssecrets
-                  optional: true
           image: gfwdockerhub/mail
           imagePullPolicy: Always
           livenessProbe:
@@ -137,4 +96,3 @@ spec:
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-status: {}

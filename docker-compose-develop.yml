@@ -8,16 +8,12 @@ services:
     environment:
       PORT: 3500
       NODE_PATH: app/src
-      CT_REGISTER_MODE: auto
       NODE_ENV: dev
       API_GATEWAY_URL: http://192.168.99.100:8000
       QUEUE_URL: redis://192.168.99.100:6379
       QUEUE_PROVIDER: redis
       QUEUE_NAME: mail
       SPARKPOST_API_KEY: notset
-      FASTLY_ENABLED: "false"
-      LOCAL_URL: http://mymachine:3055
-      CT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
     command: develop
     volumes:
       - ./app:/opt/gfw-mail-api/app

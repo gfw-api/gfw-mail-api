@@ -6,7 +6,6 @@ const koaLogger = require('koa-logger');
 const loader = require('loader');
 const validate = require('koa-validate');
 const ErrorSerializer = require('serializers/errorSerializer');
-const { RWAPIMicroservice } = require('rw-api-microservice-node');
 const convert = require('koa-convert');
 const koaSimpleHealthCheck = require('koa-simple-healthcheck');
 
@@ -51,19 +50,6 @@ app.use(validate());
 
 app.use(convert.back(koaSimpleHealthCheck()));
 
-app.use(convert.back(RWAPIMicroservice.bootstrap({
-    name: config.get('service.name'),
-    info: require('../microservice/register.json'),
-    swagger: require('../microservice/public-swagger.json'),
-    logger,
-    baseURL: process.env.CT_URL,
-    url: process.env.LOCAL_URL,
-    token: process.env.CT_TOKEN,
-    fastlyEnabled: process.env.FASTLY_ENABLED,
-    fastlyServiceId: process.env.FASTLY_SERVICEID,
-    fastlyAPIKey: process.env.FASTLY_APIKEY
-})));
-
 // load routes
 loader.loadQueues(app);
 
@@ -74,16 +60,7 @@ const appServer = require('http').Server(app.callback());
 // In production environment, the port must be declared in environment variable
 const port = process.env.PORT || config.get('service.port');
 
-const server = appServer.listen(port, () => {
-    if (process.env.CT_REGISTER_MODE === 'auto') {
-        RWAPIMicroservice.register().then(() => {
-            logger.info('CT registration process started');
-        }, (error) => {
-            logger.error(error);
-            process.exit(1);
-        });
-    }
-});
+const server = appServer.listen(port, () => {});
 
 logger.info(`Server started in port:${port}`);
 

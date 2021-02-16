@@ -11,16 +11,10 @@ env:
     - CC_TEST_REPORTER_ID=1b37f23c8b7b48e20b1acf5017cabf08994bc3b9c04f5c2a5fdd16aa78f26fb1
     - NODE_ENV=test
     - PORT=3500
-    - API_VERSION=v1
-    - LOCAL_URL=http://127.0.0.1:3500
-    - CT_URL=http://127.0.0.1:9000
-    - CT_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
     - SPARKPOST_API_KEY=foobar
     - QUEUE_NAME=mail_test
     - QUEUE_PROVIDER=redis
     - QUEUE_URL=redis://localhost:6379
-    - CT_REGISTER_MODE=auto
-    - FASTLY_ENABLED=false
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

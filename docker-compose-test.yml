@@ -10,16 +10,10 @@ services:
       NODE_ENV: test
       SPARKPOST_API_KEY: foobar
       PORT: 3500
-      API_VERSION: v1
-      LOCAL_URL: http://127.0.0.1:3500
-      CT_URL: http://127.0.0.1:9000
       MONGO_PORT_27017_TCP_ADDR: mongo
-      CT_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Im1pY3Jvc2VydmljZSIsImNyZWF0ZWRBdCI6IjIwMTYtMDktMTQifQ.IRCIRm1nfIQTfda_Wb6Pg-341zhV8soAgzw7dd5HxxQ
       QUEUE_NAME: mail_test
       QUEUE_PROVIDER: redis
       QUEUE_URL: redis://redis
-      CT_REGISTER_MODE: auto
-      FASTLY_ENABLED: "false"
     command: test
     depends_on:
       - redis
