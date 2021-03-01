@@ -13,31 +13,44 @@ API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/
 
 ## Getting Started
 
-### OS X
-
 **First, make sure that you have the [API gateway running
 locally](https://github.com/Vizzuality/api-gateway/tree/production#getting-started).**
 
-We're using Docker which, luckily for you, means that getting the
-application running locally should be fairly painless. First, make sure
-that you have [Docker Compose](https://docs.docker.com/compose/install/)
-installed on your machine.
-
-If you've not used Docker before, you may need to set up some defaults:
+Start by cloning the repository from github to your execution environment
 
 ```
-docker-machine create --driver virtualbox default
-docker-machine start default
-eval $(docker-machine env default)
+git clone https://github.com/gfw-api/gfw-mail-api.git && cd gfw-mail-api
 ```
 
-Now we're ready to actually get the application running:
+After that, follow one of the instructions below:
+
+### Using native execution
+
+1 - Set up your environment variables. See `dev.env.sample` for a list of variables you should set, which are described in detail in [this section](#environment-variables) of the documentation. Native execution will NOT load the `dev.env` file content, so you need to use another way to define those values
+
+2 - Install node dependencies using yarn:
+```
+yarn
+```
+
+3 - Start the application server:
+```
+yarn start
+```
+
+The endpoints provided by this microservice should now be available through Control Tower's URL.
+
+### Using Docker
+
+1 - Create and complete your `dev.env` file with your configuration. You can find an example `dev.env.sample` file in the project root.
+
+2 - Execute the following command to run Control tower:
 
 ```
-git clone https://github.com/Vizzuality/gfw-ogr-api.git
-cd gfw-mail-api
-npm install
-npm run develop
+./gfwMailApi.sh develop
+```
+
+The endpoints provided by this microservice should now be available through Control Tower's URL.
 ```
 
 You can now access the microservice through the API gateway.
