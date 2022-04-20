@@ -5,9 +5,6 @@
 
 This repository is the microservice that send the emails.
 
-[View the documentation for this
-API](http://gfw-api.github.io/swagger-ui/?url=https://raw.githubusercontent.com/gfw-api/gfw-mail-api/production/app/microservice/swagger.yml#/Mail)
-
 1. [Getting Started](#getting-started)
 2. [Deployment](#deployment)
 
@@ -66,3 +63,17 @@ It is necessary to define these environment variables:
 * API_GATEWAY_QUEUE_PROVIDER => redis (only support redis)
 * SELF_REGISTRY => on/off to set auto registry in API Gateway
 * SPARKPOST_API_KEY => Sparkpost api key to send emails
+
+
+## Email templates
+
+This microservice uses [Sparkpost](https://www.sparkpost.com/) to send emails, and 
+specifically Email Templates as a way to streamline mass email sending. Email Templates
+are stored in Sparkpost itself, and referenced by name when sending emails based on said templates.
+
+For ease of maintainability, Sparkpost Email templates are kept in this project, inside the
+`email-templates` folder, as part of a [Terraform](https://www.terraform.io/) project. When
+modifying said templates, be sure to do so in the files included in this project, and after
+running the `terraform apply` (or equivalent) command to apply your changes. If you want, for
+ease of testing and development, you can still make temporary changes directly on Sparkpost,
+but be sure to port any changes you want to keep back into the code in this project.
