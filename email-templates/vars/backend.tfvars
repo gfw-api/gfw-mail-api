@@ -1,1 +1,0 @@
-bucket = "wri-api-terraform"
