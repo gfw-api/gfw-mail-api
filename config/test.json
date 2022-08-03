@@ -1,4 +1,8 @@
 {
+  "apiGateway": {
+    "queueUrl": "redis://127.0.0.1:6379",
+    "queueName": "mail_test"
+  },
   "logger": {
     "name": "gfw-mail-api-TEST",
     "level": "debug",

@@ -38,8 +38,6 @@ spec:
               value: "3500"
             - name: NODE_ENV
               value: dev
-            - name: NODE_PATH
-              value: app/src
             - name: QUEUE_NAME
               value: mail_staging
             - name: QUEUE_URL
