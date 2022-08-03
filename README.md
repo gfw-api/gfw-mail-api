@@ -44,6 +44,7 @@ It is necessary to define these environment variables:
 * QUEUE_NAME => Name of the redis pub/sub queue where messages can be found
 * NODE_ENV => Environment (prod, staging, dev)
 * SPARKPOST_API_KEY => Sparkpost api key to send emails
+* SPARKPOST_LINK_TRACKING_ENABLED => If set to "false", Sparkpost will not enable tracking of opened emails or clicked links
 
 
 ## Email templates
