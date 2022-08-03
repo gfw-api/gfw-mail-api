@@ -11,7 +11,6 @@ services:
       NODE_ENV: dev
       API_GATEWAY_URL: http://192.168.99.100:8000
       QUEUE_URL: redis://192.168.99.100:6379
-      QUEUE_PROVIDER: redis
       QUEUE_NAME: mail
       SPARKPOST_API_KEY: notset
     command: develop

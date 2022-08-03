@@ -6,10 +6,4 @@ npm-debug.log
 coverage
 dev.env
 .eslintcache
-
-# Local .terraform directories
-**/.terraform/*
-
-# .tfstate files
-*.tfstate
-*.tfstate.*
+dist

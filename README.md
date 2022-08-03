@@ -1,12 +1,11 @@
 # Global Forest Watch Mail API
 
-[![Build Status](https://travis-ci.com/gfw-api/gfw-mail-api.svg?branch=develop)](https://travis-ci.com/gfw-api/gfw-mail-api)
+[![Build Status](https://travis-ci.com/gfw-api/gfw-mail-api.svg?branch=dev)](https://travis-ci.com/gfw-api/gfw-mail-api)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/a4f13ba330b5d5573d7a/test_coverage)](https://codeclimate.com/github/gfw-api/gfw-mail-api/test_coverage)
 
 This repository is the microservice that send the emails.
 
 1. [Getting Started](#getting-started)
-2. [Deployment](#deployment)
 
 ## Getting Started
 
@@ -33,35 +32,17 @@ Now we're ready to actually get the application running:
 ```
 git clone https://github.com/Vizzuality/gfw-ogr-api.git
 cd gfw-mail-api
-npm install
-npm run develop
-```
-
-You can now access the microservice through the API gateway.
-
-## Deployment
-
-The application is deployed to Heroku. Setup Heroku for the repository:
-
-```
-heroku git:remote -a gfw-mail-api-staging -r staging
-```
-
-And deploy as normal:
-
-```
-git push staging master
+yarn install
+yarn start
 ```
 
 ### Configuration
 
 It is necessary to define these environment variables:
 
-* API_GATEWAY_URI => Gateway Service API URL
+* QUEUE_URL => Redis service URL
+* QUEUE_NAME => Name of the redis pub/sub queue where messages can be found
 * NODE_ENV => Environment (prod, staging, dev)
-* API_GATEWAY_QUEUE_URL => Url of async queue
-* API_GATEWAY_QUEUE_PROVIDER => redis (only support redis)
-* SELF_REGISTRY => on/off to set auto registry in API Gateway
 * SPARKPOST_API_KEY => Sparkpost api key to send emails
 
 
