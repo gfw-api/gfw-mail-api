@@ -15,6 +15,7 @@ env:
     - SPARKPOST_API_KEY=foobar
     - QUEUE_NAME=mail_test
     - QUEUE_URL=redis://localhost:6379
+    - ALLOW_CONFIG_MUTATIONS=true
 
 before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter

@@ -4,7 +4,8 @@
     "queueName": "QUEUE_NAME"
   },
   "sparkpost": {
-    "apikey": "SPARKPOST_API_KEY"
+    "apikey": "SPARKPOST_API_KEY",
+    "linkTrackingEnabled": "SPARKPOST_LINK_TRACKING_ENABLED"
   },
   "service": {
     "port": "PORT",

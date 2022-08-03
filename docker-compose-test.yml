@@ -6,28 +6,17 @@ services:
       - "3500:3500"
     container_name: gfw-mail-api-test
     environment:
-      NODE_PATH: app/src
+      ALLOW_CONFIG_MUTATIONS: true
       NODE_ENV: test
-      SPARKPOST_API_KEY: foobar
       PORT: 3500
-      MONGO_PORT_27017_TCP_ADDR: mongo
       QUEUE_NAME: mail_test
       QUEUE_URL: redis://redis
+      SPARKPOST_API_KEY: foobar
     command: test
     depends_on:
       - redis
-      - mongo
 
   redis:
     image: redis
     expose:
       - 6379
-
-  mongo:
-    image: mongo:3.4
-    container_name: mail-mongo-test
-    command: --smallfiles
-    ports:
-      - "27017"
-    volumes:
-      - $HOME/docker/data/dataset:/data/db

@@ -2,27 +2,35 @@ import nock from 'nock';
 import config from 'config';
 import { closeTestAgent, getTestServer } from './utils/test-server';
 import { createClient } from 'redis';
+import sinon, {SinonSandbox} from 'sinon';
+import { stubConfigValue } from './utils/helpers';
 
 nock.disableNetConnect();
 nock.enableNetConnect(process.env.HOST_IP);
 
 let requester: ChaiHttp.Agent;
+let sandbox: SinonSandbox;
 
 const CHANNEL: string = config.get('apiGateway.queueName');
 const redisClient = createClient({ url: config.get('apiGateway.queueUrl') });
 
-describe('Queuing emails', () => {
+describe('Queuing emails without tracking', () => {
 
     before(async () => {
         if (process.env.NODE_ENV !== 'test') {
             throw Error(`Running the test suite with NODE_ENV ${process.env.NODE_ENV} may result in permanent data loss. Please use NODE_ENV=test.`);
         }
 
+        sandbox = sinon.createSandbox();
+        stubConfigValue(sandbox, {
+            'sparkpost.linkTrackingEnabled': 'false',
+        });
+
         requester = await getTestServer();
         await redisClient.connect();
     });
 
-    it('Test fires-notification-en message received triggers emails sent without tracking', async () => {
+    it('Test fires-notification-en message received triggers emails sent', async () => {
         const message: string = JSON.stringify({
             template: 'fires-notification-en',
             data: {
@@ -52,6 +60,10 @@ describe('Queuing emails', () => {
         const handleSparkpostCall = (resolve: () => void) => {
             nock('https://api.sparkpost.com')
                 .post(`/api/v1/transmissions`, {
+                    options: {
+                        open_tracking: false,
+                        click_tracking: false
+                    },
                     substitution_data: {
                         value: 3578,
                         alert_count: 3578,
@@ -95,6 +107,7 @@ describe('Queuing emails', () => {
 
         redisClient.removeAllListeners();
 
+        sandbox.restore();
         await closeTestAgent();
     });
 });

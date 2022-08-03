@@ -17,3 +17,12 @@ export const getTestServer: () => Promise<ChaiHttp.Agent> = async () => {
 
     return requester;
 };
+
+export const closeTestAgent: () => Promise<void> = async () => {
+    if (!requester) {
+        return;
+    }
+    requester.close();
+
+    requester = null;
+};
