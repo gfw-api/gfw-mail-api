@@ -6,7 +6,7 @@ services:
       - "3500:3500"
     container_name: gfw-mail-api-test
     environment:
-      ALLOW_CONFIG_MUTATIONS: true
+      ALLOW_CONFIG_MUTATIONS: "true"
       NODE_ENV: test
       PORT: 3500
       QUEUE_NAME: mail_test
