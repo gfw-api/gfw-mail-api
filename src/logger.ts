@@ -1,7 +1,8 @@
-const config = require('config');
-const bunyan = require('bunyan');
+import config = require('config');
+import bunyan = require('bunyan');
+import type Logger from "bunyan";
 
-const streams = [
+const streams: Record<string, unknown>[] = [
     {
         stream: process.stdout,
         level: config.get('logger.level') || 'debug'
@@ -18,10 +19,10 @@ if (config.get('logger.toFile')) {
     });
 }
 
-const logger = bunyan.createLogger({
+const logger: Logger = bunyan.createLogger({
     name: config.get('logger.name'),
     src: true,
     streams,
 });
 
-module.exports = logger;
+export default logger;

@@ -12,7 +12,6 @@ services:
       PORT: 3500
       MONGO_PORT_27017_TCP_ADDR: mongo
       QUEUE_NAME: mail_test
-      QUEUE_PROVIDER: redis
       QUEUE_URL: redis://redis
     command: test
     depends_on:

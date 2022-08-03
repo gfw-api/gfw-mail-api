@@ -2,7 +2,7 @@ language: node_js
 services:
   - redis-server
 node_js:
-  - "12"
+  - "18.7"
 cache:
   directories:
   - "node_modules"
@@ -13,7 +13,6 @@ env:
     - PORT=3500
     - SPARKPOST_API_KEY=foobar
     - QUEUE_NAME=mail_test
-    - QUEUE_PROVIDER=redis
     - QUEUE_URL=redis://localhost:6379
 
 before_script:

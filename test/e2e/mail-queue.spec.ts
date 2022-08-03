@@ -1,24 +1,18 @@
-const chai = require('chai');
-const nock = require('nock');
-const config = require('config');
-const AsyncClient = require('vizz.async-client');
-const co = require('co');
-
-const MailQueue = require('../../src/queues/mailQueue');
-
+import chai from 'chai';
+import nock from 'nock';
+import config from 'config';
+import MailQueue from 'queues/mail.queue';
+const redis = require('redis');
 
 nock.disableNetConnect();
 nock.enableNetConnect(process.env.HOST_IP);
 
+const CHANNEL = config.get('apiGateway.queueName');
+const redisClient = redis.createClient({ url: config.get('apiGateway.queueUrl') });
+redisClient.subscribe(CHANNEL);
+
 const should = chai.should();
 chai.use(require('chai-datetime'));
-
-const asyncClientSubscriber = new AsyncClient(AsyncClient.REDIS, {
-    url: config.get('apiGateway.queueUrl')
-});
-const CHANNEL = config.get('apiGateway.queueName');
-const channelSubscribe = asyncClientSubscriber.toChannel(CHANNEL);
-channelSubscribe.subscribe();
 
 describe('MailQueue ', () => {
 
@@ -30,7 +24,7 @@ describe('MailQueue ', () => {
 
     it('Test fires-notification-en message received triggers emails sent', async () => {
         process.on('unhandledRejection', (error) => {
-            should.fail(error);
+            should.fail(error.toString());
         });
 
         nock('https://api.sparkpost.com')
@@ -67,6 +61,7 @@ describe('MailQueue ', () => {
             data: {
                 value: 3578,
                 alert_count: 3578,
+                // @ts-ignore
                 map_image: null,
                 layerSlug: 'viirs-active-fires',
                 alert_name: 'Subscription r6iigdoexerhgoq63l3di',
@@ -87,12 +82,12 @@ describe('MailQueue ', () => {
             sender: 'gfw'
         };
 
-        await co(MailQueue.sendMail(null, JSON.stringify(firesMessage)));
+        await MailQueue.processMessage(JSON.stringify(firesMessage));
     });
 
 
     afterEach(() => {
-        channelSubscribe.client.removeAllListeners('message');
+        redisClient.removeAllListeners();
 
         if (!nock.isDone()) {
             throw new Error(`Not all nock interceptors were used: ${nock.pendingMocks()}`);
