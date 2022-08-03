@@ -15,13 +15,23 @@ export type MailQueueMessage = {
 
 class MailQueue {
 
+    redisClient: RedisClientType
+    #isConnected: boolean = false
+
     constructor() {
         logger.info('Initializing redis queue subscriber');
 
-        const redisClient: RedisClientType = createClient({ url: config.get('apiGateway.queueUrl') });
-        redisClient.subscribe(CHANNEL, MailQueue.processMessage);
+        this.redisClient = createClient({ url: config.get('apiGateway.queueUrl') });
+        this.redisClient.subscribe(CHANNEL, MailQueue.processMessage);
+        logger.info('[MailQueue] MailQueue listener initialized');
+    }
 
-        logger.info('[AlertQueue] AlertQueue listener initialized');
+    async connect(): Promise<boolean> {
+        if (!this.#isConnected) {
+            await this.redisClient.connect();
+            this.#isConnected = true;
+        }
+        return true;
     }
 
     static async processMessage(message: string): Promise<void> {
