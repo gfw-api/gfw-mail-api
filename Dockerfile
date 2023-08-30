@@ -1,4 +1,4 @@
-FROM node:18.7-alpine3.16
+FROM node:20.4-alpine3.18
 MAINTAINER info@vizzuality.com
 
 ENV NAME gfw-mail-api
